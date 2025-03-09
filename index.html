@@ -25,7 +25,7 @@
         <button onclick="calculateEmissions()">Розрахувати</button>
 
         <h3>Результати:</h3>
-        <p id="emission_factors"></p>
+        <p id="emission_result"></p>
         <p id="result"></p>
     </div>
 
@@ -35,17 +35,17 @@
             const fuelOil = parseFloat(document.getElementById('fuel_oil').value) || 0;
             const naturalGas = parseFloat(document.getElementById('natural_gas').value) || 0;
 
-            const emissionFactorCoal = 150; // Показник емісії 150 г/ГДж
-            const emissionFactorFuelOil = 0.57; // Показник емісії 0,57 г/ГДж
-            const emissionFactorGas = 0; // Природний газ не утворює твердих частинок
+            const emissionRateCoal = 150; // Показник емісії 150 г/ГДж
+            const emissionRateFuelOil = 0.57; // Показник емісії 0,57 г/ГДж
+            const emissionRateGas = 0; // Природний газ не утворює твердих частинок
 
-            const emissionCoal = coal * emissionFactorCoal / 1000;
-            const emissionFuelOil = fuelOil * emissionFactorFuelOil / 1000;
+            const emissionCoal = coal * emissionRateCoal / 1000;
+            const emissionFuelOil = fuelOil * emissionRateFuelOil / 1000;
             const emissionGas = 0;
 
             const totalEmissions = (emissionCoal + emissionFuelOil + emissionGas).toFixed(2);
 
-            document.getElementById('emission_factors').innerHTML = `Показник емісії:<br> Вугілля: ${emissionFactorCoal} г/ГДж<br> Мазут: ${emissionFactorFuelOil} г/ГДж<br> Природний газ: ${emissionFactorGas} г/ГДж`;
+            document.getElementById('emission_result').innerHTML = `Показник емісії:<br> - Вугілля: ${emissionRateCoal} г/ГДж<br> - Мазут: ${emissionRateFuelOil} г/ГДж<br> - Природний газ: ${emissionRateGas} г/ГДж`;
             document.getElementById('result').innerHTML = `Загальний валовий викид: ${totalEmissions} т.`;
         }
     </script>
