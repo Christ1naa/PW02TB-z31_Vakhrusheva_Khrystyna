@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор валових викидів</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .container { max-width: 600px; margin: auto; background: #f9f9f9; padding: 20px; border-radius: 10px; }
+        input, button { margin-top: 10px; width: 100%; padding: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Калькулятор валових викидів</h2>
+        <label>Вугілля (т):</label>
+        <input type="number" id="coal" placeholder="Введіть кількість">
+
+        <label>Мазут (т):</label>
+        <input type="number" id="fuel_oil" placeholder="Введіть кількість">
+
+        <label>Природний газ (м3):</label>
+        <input type="number" id="natural_gas" placeholder="Введіть кількість">
+
+        <button onclick="calculateEmissions()">Розрахувати</button>
+
+        <h3>Результати:</h3>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateEmissions() {
+            const coal = parseFloat(document.getElementById('coal').value) || 0;
+            const fuelOil = parseFloat(document.getElementById('fuel_oil').value) || 0;
+            const naturalGas = parseFloat(document.getElementById('natural_gas').value) || 0;
+
+            const emissionCoal = coal * 150 / 1000; // Показник емісії 150 г/ГДж
+            const emissionFuelOil = fuelOil * 0.57 / 1000; // Показник емісії 0,57 г/ГДж
+            const emissionGas = 0; // Природний газ не утворює твердих частинок
+
+            const totalEmissions = (emissionCoal + emissionFuelOil + emissionGas).toFixed(2);
+
+            document.getElementById('result').innerHTML = `Загальний валовий викид: ${totalEmissions} т.`;
+        }
+    </script>
+</body>
+</html>
